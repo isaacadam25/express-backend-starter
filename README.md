@@ -30,8 +30,8 @@ Before you begin, ensure you have Node.js and npm (Node Package Manager) install
 1. To start the development server and watch for changes, run the following command:
    ```bash
    npm run watch
-   This will run your Express.js server in development mode and automatically restart it when code changes are detected.
    ```
+   This will run your Express.js server in development mode and automatically restart it when code changes are detected.
 
 ### Running the Application
 
