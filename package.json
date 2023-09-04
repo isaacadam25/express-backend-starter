@@ -1,7 +1,7 @@
 {
-  "name": "mowasu-backend",
+  "name": "express-backend-starter",
   "version": "1.0.0",
-  "description": "A backend system for MOWASU Water Billing System",
+  "description": "A backend starter for building backend projects",
   "main": "server.ts",
   "_moduleAliases": {
     "@": "build"
