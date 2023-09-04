@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2018",
+    "sourceMap": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/app/*": ["./src/app/*"],
+      "@/models/*": ["./src/models/*"],
+      "@/modules/*": ["./src/modules/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/validation/*": ["./src/validations/*"],
+      "@/middlewares/*": ["./src/middlewares/*"],
+      "@/enums/*": ["./src/utils/enums/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
