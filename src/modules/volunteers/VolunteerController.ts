@@ -64,13 +64,14 @@ class VolunteerController extends Controller {
     const formattedResponse =
       VolunteerUtils.sanitizeVoluteerDetails(newVolunteer);
 
-    return res.json(
-      this.successResponse(
-        "Volunteer created successfully",
-        formattedResponse,
-        201
-      )
-    );
+    return res
+      .status(210)
+      .json(
+        this.successResponse(
+          "Volunteer created successfully",
+          formattedResponse
+        )
+      );
   };
 
   /**
@@ -99,12 +100,14 @@ class VolunteerController extends Controller {
     const volunteerResponse =
       VolunteerUtils.sanitizeVoluteerDetails(existVolunteer);
 
-    return res.json(
-      this.successResponse(
-        "Volunteer details retrieved successfully",
-        volunteerResponse
-      )
-    );
+    return res
+      .status(200)
+      .json(
+        this.successResponse(
+          "Volunteer details retrieved successfully",
+          volunteerResponse
+        )
+      );
   };
 
   /**
@@ -144,7 +147,7 @@ class VolunteerController extends Controller {
         response.push(VolunteerUtils.sanitizeVoluteerDetails(volunteer));
       }
 
-      return res.json(
+      return res.status(200).json(
         this.successResponse("Volunteers retrieved successfully", {
           page,
           limit,
@@ -165,7 +168,7 @@ class VolunteerController extends Controller {
       response.push(VolunteerUtils.sanitizeVoluteerDetails(volunteer));
     }
 
-    return res.json(
+    return res.status(200).json(
       this.successResponse("Volunteers retrieved successfully", {
         page,
         limit,
@@ -240,12 +243,14 @@ class VolunteerController extends Controller {
     const volunteerResponse =
       VolunteerUtils.sanitizeVoluteerDetails(updatedVolunteer);
 
-    return res.json(
-      this.successResponse(
-        "Volunteers details updated successfully",
-        volunteerResponse
-      )
-    );
+    return res
+      .status(200)
+      .json(
+        this.successResponse(
+          "Volunteers details updated successfully",
+          volunteerResponse
+        )
+      );
   };
 
   /**
@@ -289,9 +294,9 @@ class VolunteerController extends Controller {
       });
     }
 
-    return res.json(
-      this.successResponse("Volunteers details deleted successfully")
-    );
+    return res
+      .status(200)
+      .json(this.successResponse("Volunteers details deleted successfully"));
   };
 }
 

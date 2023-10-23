@@ -5,8 +5,11 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 
-// import required helper functions
+// import required custom middlewares
+import paginationMiddleware from "@/middlewares/paginationMiddleware";
 import { handleError } from "@/middlewares/handleError";
+
+// import required helper functions
 import { AppError } from "@/utils/exceptions/AppError";
 import { HttpCode } from "@/utils/enums/HttpCodeEnums";
 
@@ -16,7 +19,7 @@ import RoleRoutes from "@/modules/roles/RoleRoutes";
 import PermissionRoutes from "@/modules/permissions/PermissionRoutes";
 import AuthRoutes from "@/modules/authentication/AuthRoutes";
 import VolunteerRoutes from "@/modules/volunteers/VolunteerRoutes";
-import paginationMiddleware from "@/middlewares/paginationMiddleware";
+import AnnouncementRoutes from "@/modules/announcements/AnnouncementRoutes";
 
 dotenv.config();
 
@@ -76,6 +79,7 @@ class App {
     this.app.use("/api/v1/roles", RoleRoutes);
     this.app.use("/api/v1/permissions", PermissionRoutes);
     this.app.use("/api/v1/volunteers", VolunteerRoutes);
+    this.app.use("/api/v1/announcements", AnnouncementRoutes);
     this.app.all("*", (req: Request, res: Response) => {
       return res.status(404).json({
         success: false,
