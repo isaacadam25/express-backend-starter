@@ -4,7 +4,6 @@ class UserValidation {
   // validation schema for user registration details
   static validateRegistration = () => {
     return Joi.object({
-      username: Joi.string().max(30).required(),
       firstName: Joi.string().max(50).required(),
       lastName: Joi.string().max(50).required(),
       gender: Joi.string().max(6).valid("male", "female").required(),

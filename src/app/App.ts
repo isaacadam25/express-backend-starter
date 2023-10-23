@@ -15,6 +15,8 @@ import UserRoutes from "@/modules/users/UserRoutes";
 import RoleRoutes from "@/modules/roles/RoleRoutes";
 import PermissionRoutes from "@/modules/permissions/PermissionRoutes";
 import AuthRoutes from "@/modules/authentication/AuthRoutes";
+import VolunteerRoutes from "@/modules/volunteers/VolunteerRoutes";
+import paginationMiddleware from "@/middlewares/paginationMiddleware";
 
 dotenv.config();
 
@@ -65,13 +67,15 @@ class App {
     this.app.use(cors());
     this.app.use(helmet());
     this.app.use(morgan("dev"));
+    this.app.use(paginationMiddleware);
   }
 
   private configureRoutes(): void {
     this.app.use("/api/v1/auth", AuthRoutes);
     this.app.use("/api/v1/users", UserRoutes);
     this.app.use("/api/v1/roles", RoleRoutes);
-    this.app.use("/api/v1/permisssions", PermissionRoutes);
+    this.app.use("/api/v1/permissions", PermissionRoutes);
+    this.app.use("/api/v1/volunteers", VolunteerRoutes);
     this.app.all("*", (req: Request, res: Response) => {
       return res.status(404).json({
         success: false,

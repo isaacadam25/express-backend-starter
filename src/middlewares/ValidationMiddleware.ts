@@ -4,7 +4,7 @@ import { NextFunction, Request, Response } from "express";
 // import helpers functions
 import HttpResponse from "@/utils/helpers/HttpResponses";
 
-class validationMiddleware extends HttpResponse {
+class ValidationMiddleware extends HttpResponse {
   static validateBody = (schema: Joi.Schema) => {
     return (req: Request, res: Response, next: NextFunction) => {
       const { error } = schema.validate(req.body);
@@ -32,4 +32,4 @@ class validationMiddleware extends HttpResponse {
   };
 }
 
-export default validationMiddleware;
+export default ValidationMiddleware;

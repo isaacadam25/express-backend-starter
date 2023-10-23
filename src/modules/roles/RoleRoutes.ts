@@ -15,7 +15,7 @@ import CommonValidation from "@/validations/common/CommonValidation";
 
 RoleRoutes.route("/")
   .post(
-    AuthMiddleware.authenticateUser,
+    // AuthMiddleware.authenticateUser,
     ValidationMiddleware.validateBody(RoleValidation.validateRoleDetails()),
     RoleController.createRole
   )

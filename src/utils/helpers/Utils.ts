@@ -1,5 +1,8 @@
 class Utils {
-  // format phone number to 255XXXXXXX
+  /**
+   *
+   * @description Format phone number to 255XXXXXXXXX
+   */
   static formatPhoneNumber = (phoneNumber: string): string => {
     const formattedPHoneNumber = "255" + phoneNumber.substring(1);
     return formattedPHoneNumber;
