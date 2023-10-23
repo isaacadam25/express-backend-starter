@@ -34,16 +34,6 @@ class UserController extends Controller {
 
     const formattedUser = UserUtils.formatUser(payload);
 
-    const existUsername = await UserService.getUserByUsername(
-      formattedUser.username
-    );
-    if (!isEmpty(existUsername)) {
-      throw new AppError({
-        httpCode: HttpCode.BAD_REQUEST,
-        description: "Username already exist. Try another username",
-      });
-    }
-
     const existEmail = await UserService.getUserByEmail(formattedUser.email);
     if (!isEmpty(existEmail)) {
       throw new AppError({

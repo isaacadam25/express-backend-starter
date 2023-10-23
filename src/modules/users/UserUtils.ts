@@ -10,7 +10,6 @@ class UserUtils {
    */
   static formatUser = (user: IUserPayload): IUserBody => {
     const formmatedUser: IUserBody = {
-      username: user.username,
       first_name: user.firstName,
       last_name: user.lastName,
       gender: user.gender,
@@ -31,7 +30,6 @@ class UserUtils {
   static sanitizeUser = (user: IUser) => {
     const sanitizedUser = {
       id: user._id,
-      username: user.username,
       firstName: user.first_name,
       lastName: user.last_name,
       gender: user.gender,
