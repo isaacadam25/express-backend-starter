@@ -1,7 +1,7 @@
 {
-  "name": "express-backend-starter",
+  "name": "nwc-system-backend",
   "version": "1.0.0",
-  "description": "A backend starter for building backend projects",
+  "description": "A backend for  NWC church management system",
   "main": "server.ts",
   "_moduleAliases": {
     "@": "build"

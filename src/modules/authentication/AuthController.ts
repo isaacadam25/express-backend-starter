@@ -50,7 +50,7 @@ class AuthController extends Controller {
       .json(this.successResponse("User successfully logged in", response));
   };
 
-  // chnage user password
+  // change user password
   static changePassword = async (req: Request, res: Response) => {
     const payload: IChangePassword = req.body;
     const user = req.user;

@@ -1,15 +1,7 @@
 import { Schema, model } from "mongoose";
 import { IUser } from "@/models/user/types";
-import Encryption from "@/utils/helpers/Encryption";
 
 const userSchema: Schema = new Schema<IUser>({
-  username: {
-    type: String,
-    unique: true,
-    trim: true,
-    lowercase: true,
-    required: true,
-  },
   first_name: {
     type: String,
     trim: true,
@@ -31,6 +23,7 @@ const userSchema: Schema = new Schema<IUser>({
   phone_number: {
     type: String,
     trim: true,
+    unique: true,
     lowercase: true,
     required: true,
   },
