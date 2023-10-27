@@ -80,7 +80,7 @@ class VolunteerService extends VolunteerRepository {
   static deleteVolunteerDetails = (
     volunteerId: string
   ): Promise<IVolunteer | null> => {
-    return this.getById(volunteerId);
+    return this.deleteById(volunteerId);
   };
 }
 

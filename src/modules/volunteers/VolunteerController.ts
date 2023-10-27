@@ -279,12 +279,12 @@ class VolunteerController extends Controller {
     }
 
     // do not delete active volunteer
-    if (existVolunteer.status) {
-      throw new AppError({
-        httpCode: HttpCode.BAD_REQUEST,
-        description: "Active volunteer cannot be deleted",
-      });
-    }
+    // if (existVolunteer.status) {
+    //   throw new AppError({
+    //     httpCode: HttpCode.BAD_REQUEST,
+    //     description: "Active volunteer cannot be deleted",
+    //   });
+    // }
 
     const deletedVolunteer = await VolunteerService.deleteVolunteerDetails(
       volunteerId
