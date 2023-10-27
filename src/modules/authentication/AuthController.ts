@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
 import { isEmpty } from "lodash";
 
 // import required services
@@ -18,7 +18,7 @@ import { HttpCode } from "@/utils/enums/HttpCodeEnums";
 
 class AuthController extends Controller {
   // user login function
-  static userLogin = async (req: Request, res: Response) => {
+  static userLogin: RequestHandler = async (req: Request, res: Response) => {
     const payload: IUserLoginPayload = req.body;
 
     const phoneNumber = Utils.formatPhoneNumber(payload.phoneNumber);
@@ -50,8 +50,16 @@ class AuthController extends Controller {
       .json(this.successResponse("User successfully logged in", response));
   };
 
+  static getAuthUser: RequestHandler = async (
+    req: Request,
+    res: Response
+  ) => {};
+
   // change user password
-  static changePassword = async (req: Request, res: Response) => {
+  static changePassword: RequestHandler = async (
+    req: Request,
+    res: Response
+  ) => {
     const payload: IChangePassword = req.body;
     const user = req.user;
 

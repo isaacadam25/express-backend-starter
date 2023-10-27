@@ -34,7 +34,7 @@ export interface IVolunteerReponse {
   firstName: string;
   lastName: string;
   gender: string;
-  phoneNUmber: string;
+  phoneNumber: string;
   email?: string;
   status: boolean;
 }

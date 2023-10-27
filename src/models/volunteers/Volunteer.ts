@@ -30,7 +30,6 @@ const volunteerSchema: Schema = new Schema<IVolunteer>({
   email: {
     type: String,
     trim: true,
-    unique: true,
     lowercase: true,
     required: false,
     default: null,

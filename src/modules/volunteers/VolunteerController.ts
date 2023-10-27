@@ -28,14 +28,16 @@ class VolunteerController extends Controller {
   ) => {
     const payload: IVolunteerPayload = req.body;
 
-    const existEmail = await VolunteerService.getVolunteerByEmail(
-      payload.email
-    );
-    if (!isEmpty(existEmail)) {
-      throw new AppError({
-        httpCode: HttpCode.BAD_REQUEST,
-        description: `Volunteer with email ${payload.email} already exist`,
-      });
+    if (payload.email) {
+      const existEmail = await VolunteerService.getVolunteerByEmail(
+        payload.email
+      );
+      if (!isEmpty(existEmail)) {
+        throw new AppError({
+          httpCode: HttpCode.BAD_REQUEST,
+          description: `Volunteer with email ${payload.email} already exist`,
+        });
+      }
     }
 
     const existPhoneNumber = await VolunteerService.getVolunteerByPhoneNumber(

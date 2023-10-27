@@ -34,7 +34,7 @@ class VolunteerUtils {
       firstName: payload.first_name,
       lastName: payload.last_name,
       gender: payload.gender,
-      phoneNUmber: payload.phone_number,
+      phoneNumber: payload.phone_number,
       email: payload.email,
       status: payload.status,
     };
