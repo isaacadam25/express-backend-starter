@@ -14,8 +14,8 @@ import AuthMiddleware from "@/middlewares/AuthMiddleware";
 const UserRoutes: Router = Router();
 
 UserRoutes.route("/").post(
-  AuthMiddleware.authenticateUser,
-  AuthMiddleware.authorizeUser("create-user"),
+  // AuthMiddleware.authenticateUser,
+  // AuthMiddleware.authorizeUser("create-user"),
   ValidationMiddleware.validateBody(UserValidation.validateRegistration()),
   UserController.createUser
 );
