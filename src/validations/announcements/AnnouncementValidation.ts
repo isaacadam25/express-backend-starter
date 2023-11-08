@@ -9,7 +9,7 @@ class AnnouncementValidation {
   static validateDetails = () => {
     return Joi.object({
       title: Joi.string().max(50).required(),
-      message: Joi.string().max(50).required(),
+      message: Joi.string().max(320).required(),
       receivers: Joi.array()
         .min(1)
         .required()
