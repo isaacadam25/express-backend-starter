@@ -1,6 +1,6 @@
+import { map } from "lodash";
 import { IUser } from "@/models/user/types";
 import { IUserBody, IUserPayload } from "@/modules/users/types";
-import { map } from "lodash";
 
 class UserUtils {
   /**
@@ -24,7 +24,7 @@ class UserUtils {
 
   /**
    * Sanitize user data from payload format to a user readable format
-   * @param {IUserPayload} user - The user data from the payload.
+   * @param {IUser} user - The user data from the payload.
    * @returns {IUserBody} The sanitized user data.
    */
   static sanitizeUser = (user: IUser) => {
