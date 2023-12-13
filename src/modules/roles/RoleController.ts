@@ -9,18 +9,26 @@ import UserService from "../users/UserService";
 // import required helper functions
 import Controller from "@/modules/Controller";
 import RoleUtils from "@/modules/roles/RoleUtils";
+import { AppError } from "@/utils/exceptions/AppError";
+import { HttpCode } from "@/utils/enums/HttpCodeEnums";
+
+// import required types
+import { IRole } from "@/models/role/types";
 import {
   IAddPermission,
   IRemovePermission,
   IRolePayload,
   IRoleUpdate,
 } from "@/modules/roles/types";
-import { AppError } from "@/utils/exceptions/AppError";
-import { HttpCode } from "@/utils/enums/HttpCodeEnums";
-import { IRole } from "@/models/role/types";
 
 class RoleController extends Controller {
-  // create new role function
+  /**
+   * @description Create new role
+   *
+   * @method POST
+   * @route /roles
+   * @access private
+   */
   static createRole = async (req: Request, res: Response) => {
     const rolePayload: IRolePayload = req.body;
 
@@ -51,7 +59,13 @@ class RoleController extends Controller {
       );
   };
 
-  // add permission to role
+  /**
+   * @description Add permission to role
+   *
+   * @method PUT
+   * @route /roles/permissions/:id
+   * @access private
+   */
   static addPermissionToRole = async (req: Request, res: Response) => {
     const payload: IAddPermission = req.body;
     const roleId: string = req.params.id;
@@ -102,7 +116,13 @@ class RoleController extends Controller {
       );
   };
 
-  // get all roles
+  /**
+   * @description Get all roles
+   *
+   * @method GET
+   * @route /roles
+   * @access private
+   */
   static getAllRoles = async (req: Request, res: Response) => {
     const roles = await RoleService.getAllRoles();
     if (isEmpty(roles)) {
@@ -126,7 +146,13 @@ class RoleController extends Controller {
       );
   };
 
-  // retrieve single role details by id
+  /**
+   * @description Get single role by ID
+   *
+   * @method GET
+   * @route /roles/:id
+   * @access private
+   */
   static getSingleRole = async (req: Request, res: Response) => {
     const roleId: string = req.params.id;
 
@@ -148,7 +174,13 @@ class RoleController extends Controller {
       );
   };
 
-  // remove permission from a selected role
+  /**
+   * @description Remove permissions from a role
+   *
+   * @method DELETE
+   * @route /roles/permissions/:id
+   * @access private
+   */
   static removePermissionFromRole = async (req: Request, res: Response) => {
     const roleId: string = req.params.id;
     const payload: IRemovePermission = req.body;
@@ -214,7 +246,13 @@ class RoleController extends Controller {
       );
   };
 
-  // update role details
+  /**
+   * @description Update role details
+   *
+   * @method PUT
+   * @route /roles/:id
+   * @access private
+   */
   static updateRoleDetails = async (req: Request, res: Response) => {
     const roleId: string = req.params.id;
     const payload: IRoleUpdate = req.body;
@@ -255,7 +293,13 @@ class RoleController extends Controller {
       );
   };
 
-  // delete role
+  /**
+   * @description Delete single role
+   *
+   * @method DELETE
+   * @route /roles/:id
+   * @access private
+   */
   static deleteRole = async (req: Request, res: Response) => {
     const roleId: string = req.params.id;
 

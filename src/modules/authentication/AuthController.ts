@@ -21,7 +21,7 @@ import { HttpCode } from "@/utils/enums/HttpCodeEnums";
 
 class AuthController extends Controller {
   /**
-   * User login function
+   * @description User login function
    *
    * @method POST
    * @route /auth/login
@@ -60,7 +60,7 @@ class AuthController extends Controller {
   };
 
   /**
-   * Get current user logged in details
+   * @description Get current user logged in details
    *
    * @method GET
    * @route /auth
@@ -71,7 +71,7 @@ class AuthController extends Controller {
   };
 
   /**
-   * Change user password
+   * @description Change user password
    *
    * @method POST
    * @route /auth/change-password
