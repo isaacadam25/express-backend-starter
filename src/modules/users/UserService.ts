@@ -1,11 +1,17 @@
+// import required data repositories
 import UserRepository from "@/modules/users/UserRepository";
+
+// import required helper utils
 import Utils from "@/utils/helpers/Utils";
+
+// import required types
 import { IUser } from "@/models/user/types";
 import { IUserBody } from "@/modules/users/types";
 
 class UserService extends UserRepository {
   /**
-   * Get a user by their username.
+   * @description Get a user by their username
+   *
    * @param {string} username - The username of the user to retrieve.
    * @returns {Promise<IUser | null>} A promise that resolves to the retrieved user or null.
    */
@@ -16,7 +22,8 @@ class UserService extends UserRepository {
   };
 
   /**
-   * Get a user by their email.
+   * @description Get a user by their email
+   *
    * @param {string} email - The email of the user to retrieve.
    * @returns {Promise<IUser | null>} A promise that resolves to the retrieved user or null.
    */
@@ -27,7 +34,8 @@ class UserService extends UserRepository {
   };
 
   /**
-   * Get a user by their phone number.
+   * @description Get a user by their phone number
+   *
    * @param {string} phoneNumber - The phone number of the user to retrieve.
    * @returns {Promise<IUser | null>} A promise that resolves to the retrieved user or null.
    */
@@ -40,7 +48,8 @@ class UserService extends UserRepository {
   };
 
   /**
-   * Register new user
+   * @description Register new user
+   *
    * @param {IUserBody} payload - The user details object.
    * @returns {Promise<IUser | null>} A promise that resolves to the retrieved user or null.
    */
@@ -53,7 +62,8 @@ class UserService extends UserRepository {
   };
 
   /**
-   * Get single user by their ID
+   * @description Get single user by their ID
+   *
    * @param {string} userId - The user details object.
    * @returns {Promise<IUser | null>} A promise that resolves to the retrieved user or null.
    */
@@ -62,7 +72,8 @@ class UserService extends UserRepository {
   };
 
   /**
-   * Get user with respect to role id
+   * @description Get user with respect to role id
+   *
    * @param {string} roleId - The role ID
    * @returns {Promise<IUser | null>} A promise that resolves to the retrieved user or null.
    */
@@ -70,7 +81,13 @@ class UserService extends UserRepository {
     return this.getByQuery({ role: roleId });
   };
 
-  // update user role
+  /**
+   * @description Update user role
+   *
+   * @param {string} userId - The user ID
+   * @param {string} roleId - The role ID
+   * @returns {Promise<IUser | null>} A promise that resolves to the retrieved user or null.
+   */
   static updateUserRole = (
     userId: string,
     roleId: string
@@ -78,6 +95,13 @@ class UserService extends UserRepository {
     return this.updateById(userId, { role: roleId });
   };
 
+  /**
+   * @description Update user password
+   *
+   * @param {string} userId - The user ID
+   * @param {string} password - New user password
+   * @returns {Promise<IUser | null>} A promise that resolves to the retrieved user or null.
+   */
   static updateUserPassword = (
     userId: string,
     password: string

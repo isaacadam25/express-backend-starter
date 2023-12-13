@@ -35,7 +35,7 @@ class App {
     this.configureRoutes();
   }
 
-  private initializeDatabase = async (): Promise<any> => {
+  private initializeDatabase = async (): Promise<void> => {
     try {
       if (env.NODE_ENV !== "production") {
         const connection = await this._connectDatabase(env.TEST_DATABASE_URI);

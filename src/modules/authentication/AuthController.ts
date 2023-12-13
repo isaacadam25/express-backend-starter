@@ -12,12 +12,21 @@ import JWT from "@/utils/helpers/JWT";
 import Utils from "@/utils/helpers/Utils";
 import AuthUtils from "@/modules/authentication/AuthUtils";
 import UserUtils from "@/modules/users/UserUtils";
-import { IChangePassword, IUserLoginPayload } from "./types";
+import {
+  IChangePassword,
+  IUserLoginPayload,
+} from "@/modules/authentication/types";
 import { AppError } from "@/utils/exceptions/AppError";
 import { HttpCode } from "@/utils/enums/HttpCodeEnums";
 
 class AuthController extends Controller {
-  // user login function
+  /**
+   * User login function
+   *
+   * @method POST
+   * @route /auth/login
+   * @access public
+   */
   static userLogin: RequestHandler = async (req: Request, res: Response) => {
     const payload: IUserLoginPayload = req.body;
 
@@ -50,12 +59,24 @@ class AuthController extends Controller {
       .json(this.successResponse("User successfully logged in", response));
   };
 
-  static getAuthUser: RequestHandler = async (
-    req: Request,
-    res: Response
-  ) => {};
+  /**
+   * Get current user logged in details
+   *
+   * @method GET
+   * @route /auth
+   * @access private
+   */
+  static getAuthUser: RequestHandler = async (req: Request, res: Response) => {
+    return res.json(this.successResponse("Auth user retrieved successfully"));
+  };
 
-  // change user password
+  /**
+   * Change user password
+   *
+   * @method POST
+   * @route /auth/change-password
+   * @access private
+   */
   static changePassword: RequestHandler = async (
     req: Request,
     res: Response
@@ -63,18 +84,18 @@ class AuthController extends Controller {
     const payload: IChangePassword = req.body;
     const user = req.user;
 
+    if (payload.new_password !== payload.confirm_password) {
+      throw new AppError({
+        httpCode: HttpCode.BAD_REQUEST,
+        description: "New password does not match with confirm password",
+      });
+    }
+
     // compare password
     if (payload.password === payload.new_password) {
       throw new AppError({
         httpCode: HttpCode.BAD_REQUEST,
         description: "New password can not be equal to current password",
-      });
-    }
-
-    if (payload.new_password !== payload.confirm_password) {
-      throw new AppError({
-        httpCode: HttpCode.BAD_REQUEST,
-        description: "New password does not match with confirm password",
       });
     }
 
