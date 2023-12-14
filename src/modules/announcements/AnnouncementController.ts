@@ -6,11 +6,13 @@ import SmsService from "@/services/SmsService";
 // import required helper utils
 import Controller from "@/modules/Controller";
 import Utils from "@/utils/helpers/Utils";
+
+// import required types
 import { IAnnouncementPayload } from "@/modules/announcements/types";
 
 class AnnouncementController extends Controller {
   /**
-   * Send announcement to many users
+   * @description Send announcement to many users
    *
    * @method POST
    * @route /announcements

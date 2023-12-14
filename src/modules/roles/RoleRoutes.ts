@@ -1,6 +1,6 @@
-import express from "express";
+import { Router } from "express";
 
-const RoleRoutes: express.Router = express.Router();
+const RoleRoutes: Router = Router();
 
 // import required controllers
 import RoleController from "@/modules/roles/RoleController";

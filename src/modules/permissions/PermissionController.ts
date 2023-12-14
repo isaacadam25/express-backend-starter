@@ -6,12 +6,20 @@ import PermissionService from "@/modules/permissions/PermissionSevice";
 // import required helpers functions
 import Controller from "@/modules/Controller";
 import PermisssionUtils from "@/modules/permissions/PermissionUtils";
-import { IPermissionPayload } from "./types";
 import { AppError } from "@/utils/exceptions/AppError";
 import { HttpCode } from "@/utils/enums/HttpCodeEnums";
 
+// import required types
+import { IPermissionPayload } from "@/modules/permissions/types";
+
 class PermisssionController extends Controller {
-  // create new permisssion
+  /**
+   * @description Create new permission
+   *
+   * @method POST
+   * @route /permissions
+   * @access private
+   */
   static createPermisssion = async (req: Request, res: Response) => {
     const payload: IPermissionPayload = req.body;
 
@@ -61,7 +69,13 @@ class PermisssionController extends Controller {
       );
   };
 
-  // get all permissions
+  /**
+   * @description Get all permissions
+   *
+   * @method GET
+   * @route /permissions
+   * @access private
+   */
   static getAllPermissions = async (req: Request, res: Response) => {
     const permissions = await PermissionService.getAllPermissions();
     if (!permissions) {
@@ -84,7 +98,13 @@ class PermisssionController extends Controller {
     );
   };
 
-  // retrieve single permission details
+  /**
+   * @description Get single permission
+   *
+   * @method GET
+   * @route /permissions/:id
+   * @access private
+   */
   static getSinglePermission = async (req: Request, res: Response) => {
     const permissionId: string = req.params.id;
 

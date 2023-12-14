@@ -7,16 +7,18 @@ import VolunteerService from "@/modules/volunteers/VolunteerService";
 // import required helper utils
 import Controller from "@/modules/Controller";
 import VolunteerUtils from "@/modules/volunteers/VolunteerUtils";
+import { AppError } from "@/utils/exceptions/AppError";
+import { HttpCode } from "@/utils/enums/HttpCodeEnums";
+
+// import required types
 import {
   IVolunteerPayload,
   IVolunteerReponse,
 } from "@/modules/volunteers/types";
-import { AppError } from "@/utils/exceptions/AppError";
-import { HttpCode } from "@/utils/enums/HttpCodeEnums";
 
 class VolunteerController extends Controller {
   /**
-   * Create new volunteer
+   * @description Create new volunteer
    *
    * @method POST
    * @route /volunteers
@@ -77,7 +79,7 @@ class VolunteerController extends Controller {
   };
 
   /**
-   * Get volunteer details by ID
+   * @description Get volunteer details by ID
    *
    * @method GET
    * @route /volunteers/:volunteer_id
@@ -113,7 +115,7 @@ class VolunteerController extends Controller {
   };
 
   /**
-   * Get all volunteers
+   *  @description Get all volunteers
    *
    * @method GET
    * @route /volunteers/:volunteer_id
@@ -180,7 +182,7 @@ class VolunteerController extends Controller {
   };
 
   /**
-   * Update volunteer details
+   * @description Update volunteer details
    *
    * @method PUT
    * @route /volunteers/:volunteer_id
@@ -256,7 +258,7 @@ class VolunteerController extends Controller {
   };
 
   /**
-   * Delete volunteer details
+   * @description Delete volunteer details
    *
    * @method DELETE
    * @route /volunteers/:volunteer_id

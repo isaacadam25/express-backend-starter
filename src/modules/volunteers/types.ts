@@ -13,7 +13,7 @@ export interface IVolunteerPayload {
 
 /**
  *
- * @description Volunteer registration details body
+ * @description Volunteer registration details request payload
  *
  */
 export interface IVolunteerBody {
@@ -26,7 +26,7 @@ export interface IVolunteerBody {
 
 /**
  *
- * @description Volunteer response
+ * @description Volunteer response payload
  *
  */
 export interface IVolunteerReponse {
