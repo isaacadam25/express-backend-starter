@@ -10,21 +10,27 @@ import UserUtils from "@/modules/users/UserUtils";
 import Utils from "@/utils/helpers/Utils";
 import Controller from "@/modules/Controller";
 import Encryption from "@/utils/helpers/Encryption";
-import { IUserPayload } from "@/modules/users/types";
 import { AppError } from "@/utils/exceptions/AppError";
+
+// import required types
 import { HttpCode } from "@/utils/enums/HttpCodeEnums";
+import { IUserPayload } from "@/modules/users/types";
 
 class UserController extends Controller {
   /**
-   * Create a new user account.
+   * @description Create new user
    *
-   * @route POST /users
+   * @route /users
+   * @method POST
    * @access Private
    *
-   * @param {Request} req - The request object containing user payload.
+   * @param {Request} req - The request object user details payload.
    * @param {Response} res - The response object used to send the response.
-   * @returns {Response} A response indicating the status of the user creation.
-   * @throws {AppError} If the username already exists or user creation fails.
+   * @returns {Response} A response indicating the created user details.
+   * @throws {AppError} If the user email already exists.
+   * @throws {AppError} If the user phone number already exists.
+   * @throws {AppError} If the user role does not exists.
+   * @throws {AppError} If error occurred during user creation
    */
   static createUser = async (
     req: Request,
@@ -57,7 +63,7 @@ class UserController extends Controller {
     if (isEmpty(existRole)) {
       throw new AppError({
         httpCode: HttpCode.BAD_REQUEST,
-        description: "Role does not already exist. Try another role",
+        description: "Role does not exist. Try another role",
       });
     }
 
@@ -91,18 +97,24 @@ class UserController extends Controller {
   };
 
   /**
-   * Assign role to user
+   * @description Assign role to user
    *
-   * @route PUT /users/:user_id/roles/:role_id
+   * @route /users/:user_id/roles/:role_id
+   * @method PUT
    * @access Private
    *
-   * @param {Request} req - The request object containing user params.
+   * @param {Request} req - The request object user details payload.
    * @param {Response} res - The response object used to send the response.
-   * @returns {Response} A response indicating the status of the user role assignment.
-   * @throws {AppError} If the user details not found
-   * @throws {AppError} If the role details not found
+   * @returns {Response} A response indicating the created user details.
+   * @throws {AppError} If the user email already exists.
+   * @throws {AppError} If the user phone number already exists.
+   * @throws {AppError} If the user role does not exists.
+   * @throws {AppError} If error occurred during user creation.
    */
-  static assignRoleToUser = async (req: Request, res: Response) => {
+  static assignRoleToUser = async (
+    req: Request,
+    res: Response
+  ): Promise<Response<any, Record<string, any>>> => {
     const roleId: string = req.params.role_id;
     const userId: string = req.params.user_id;
 
