@@ -7,8 +7,11 @@ import UserService from "@/modules/users/UserService";
 // import required helper utils
 import HttpResponse from "@/utils/helpers/HttpResponses";
 import { AppError } from "@/utils/exceptions/AppError";
+
+// import required types
 import { HttpCode } from "@/utils/enums/HttpCodeEnums";
 import { IUser } from "@/models/user/types";
+import { IResponse } from "@/utils/interfaces/common";
 
 class Controller extends HttpResponse {
   /**
@@ -17,13 +20,13 @@ class Controller extends HttpResponse {
    * @param {string} message - The response message.
    * @param {string} data - The response data to be returned.
    * @param {string} statusCode - The response status code to be returned.
-   * @returns {object} - An object indicating HTTP success response.
+   * @returns {IResponse} - An object indicating HTTP success response.
    */
   protected static successResponse = (
     message: string,
     data: any = null,
     statusCode: number = 200
-  ): object => {
+  ): IResponse => {
     return {
       success: true,
       statusCode,
