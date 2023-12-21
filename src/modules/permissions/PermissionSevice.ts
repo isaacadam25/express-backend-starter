@@ -1,4 +1,7 @@
+// import required repositories
 import PermissionRepository from "@/modules/permissions/PermissionRepository";
+
+// import required types
 import { IPermission } from "@/models/permission/types";
 import { IPermissionBody } from "@/modules/permissions/types";
 
