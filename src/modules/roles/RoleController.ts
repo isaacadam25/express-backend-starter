@@ -25,11 +25,20 @@ class RoleController extends Controller {
   /**
    * @description Create new role
    *
-   * @method POST
    * @route /roles
+   * @method POST
    * @access private
+   *
+   * @param {Request} req - The request object role details payload.
+   * @param {Response} res - The response object used to send the response.
+   * @returns {Response} A response indicating the created role details.
+   * @throws {AppError} If the role name already exists.
+   * @throws {AppError} If error occurred during role creation
    */
-  static createRole = async (req: Request, res: Response) => {
+  static createRole = async (
+    req: Request,
+    res: Response
+  ): Promise<Response<any, Record<string, any>>> => {
     const rolePayload: IRolePayload = req.body;
 
     const existRole = await RoleService.getRoleByName(rolePayload.roleName);
@@ -62,11 +71,21 @@ class RoleController extends Controller {
   /**
    * @description Add permission to role
    *
-   * @method PUT
    * @route /roles/permissions/:id
+   * @method PUT
    * @access private
+   *
+   * @param {Request} req - The request object role details payload.
+   * @param {Response} res - The response object used to send the response.
+   * @returns {Response} A response indicating the created role details.
+   * @throws {AppError} If the role does not exists.
+   * @throws {AppError} If the permission in role already exists.
+   * @throws {AppError} If error occurred during add role to permission.
    */
-  static addPermissionToRole = async (req: Request, res: Response) => {
+  static addPermissionToRole = async (
+    req: Request,
+    res: Response
+  ): Promise<Response<any, Record<string, any>>> => {
     const payload: IAddPermission = req.body;
     const roleId: string = req.params.id;
 
@@ -119,11 +138,19 @@ class RoleController extends Controller {
   /**
    * @description Get all roles
    *
-   * @method GET
    * @route /roles
+   * @method GET
    * @access private
+   *
+   * @param {Request} _req - The request object.
+   * @param {Response} res - The response object used to send the response.
+   * @returns {Response} A response indicating the retrieved roles.
+   * @throws {AppError} If no role exists.
    */
-  static getAllRoles = async (req: Request, res: Response) => {
+  static getAllRoles = async (
+    _req: Request,
+    res: Response
+  ): Promise<Response<any, Record<string, any>>> => {
     const roles = await RoleService.getAllRoles();
     if (isEmpty(roles)) {
       throw new AppError({
@@ -149,11 +176,19 @@ class RoleController extends Controller {
   /**
    * @description Get single role by ID
    *
-   * @method GET
    * @route /roles/:id
+   * @method GET
    * @access private
+   *
+   * @param {Request} req - The request object.
+   * @param {Response} res - The response object used to send the response.
+   * @returns {Response} A response indicating the retrieved role details.
+   * @throws {AppError} If role details does not exist.
    */
-  static getSingleRole = async (req: Request, res: Response) => {
+  static getSingleRole = async (
+    req: Request,
+    res: Response
+  ): Promise<Response<any, Record<string, any>>> => {
     const roleId: string = req.params.id;
 
     const existRole = await RoleService.getRoleById(roleId);
@@ -177,11 +212,21 @@ class RoleController extends Controller {
   /**
    * @description Remove permissions from a role
    *
-   * @method DELETE
    * @route /roles/permissions/:id
+   * @method DELETE
    * @access private
+   *
+   * @param {Request} req - The request object.
+   * @param {Response} res - The response object used to send the response.
+   * @returns {Response} A response indicating the retrieved role details.
+   * @throws {AppError} If role details does not exist.
+   * @throws {AppError} If some role permission details does not exist.
+   * @throws {AppError} If failed to remove role permission details.
    */
-  static removePermissionFromRole = async (req: Request, res: Response) => {
+  static removePermissionFromRole = async (
+    req: Request,
+    res: Response
+  ): Promise<Response<any, Record<string, any>>> => {
     const roleId: string = req.params.id;
     const payload: IRemovePermission = req.body;
 
@@ -249,11 +294,21 @@ class RoleController extends Controller {
   /**
    * @description Update role details
    *
-   * @method PUT
    * @route /roles/:id
+   * @method PUT
    * @access private
+   *
+   * @param {Request} req - The request object.
+   * @param {Response} res - The response object used to send the response.
+   * @returns {Response} A response indicating the retrieved role details.
+   * @throws {AppError} If role details does not exist.
+   * @throws {AppError} If role name already exist.
+   * @throws {AppError} If failed to update role details.
    */
-  static updateRoleDetails = async (req: Request, res: Response) => {
+  static updateRoleDetails = async (
+    req: Request,
+    res: Response
+  ): Promise<Response<any, Record<string, any>>> => {
     const roleId: string = req.params.id;
     const payload: IRoleUpdate = req.body;
 
@@ -278,8 +333,7 @@ class RoleController extends Controller {
     if (isEmpty(updatedRole)) {
       throw new AppError({
         httpCode: HttpCode.BAD_REQUEST,
-        description:
-          "Failed to update role this.updateRoleDetails. Try again later",
+        description: "Failed to update role details. Try again later",
       });
     }
 
@@ -294,13 +348,24 @@ class RoleController extends Controller {
   };
 
   /**
-   * @description Delete single role
+   * @description Delete role details
    *
-   * @method DELETE
    * @route /roles/:id
+   * @method DELETE
    * @access private
+   *
+   * @param {Request} req - The request object.
+   * @param {Response} res - The response object used to send the response.
+   * @returns {Response} A response indicating the retrieved role details.
+   * @throws {AppError} If role details does not exist.
+   * @throws {AppError} If role have permissions.
+   * @throws {AppError} If role has been assigned to user.
+   * @throws {AppError} If failed to delete role details.
    */
-  static deleteRole = async (req: Request, res: Response) => {
+  static deleteRole = async (
+    req: Request,
+    res: Response
+  ): Promise<Response<any, Record<string, any>>> => {
     const roleId: string = req.params.id;
 
     const existRole = await RoleService.getRoleById(roleId);
