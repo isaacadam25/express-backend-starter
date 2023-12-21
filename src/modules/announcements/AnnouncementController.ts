@@ -12,16 +12,20 @@ import { IAnnouncementPayload } from "@/modules/announcements/types";
 
 class AnnouncementController extends Controller {
   /**
-   * @description Send announcement to many users
+   * @description Send announcement to user
    *
-   * @method POST
    * @route /announcements
-   * @access private
+   * @method POST
+   * @access Private
+   *
+   * @param {Request} req - The request object announcements details payload.
+   * @param {Response} res - The response object used to send the response.
+   * @returns {Response} A response indicating the sent announcement details.
    */
   static sendAnnouncement: RequestHandler = async (
     req: Request,
     res: Response
-  ) => {
+  ): Promise<Response<any, Record<string, any>>> => {
     const payload: IAnnouncementPayload = req.body;
 
     for (const phoneNumber of payload.receivers) {
