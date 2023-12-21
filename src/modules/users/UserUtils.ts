@@ -4,7 +4,7 @@ import { IUserBody, IUserPayload } from "@/modules/users/types";
 
 class UserUtils {
   /**
-   * Format user data from payload format to a database query format.
+   * @description Format user data from payload format to a database query format.
    * @param {IUserPayload} user - The user data from the payload.
    * @returns {IUserBody} The sanitized user data.
    */
@@ -23,11 +23,11 @@ class UserUtils {
   };
 
   /**
-   * Sanitize user data from payload format to a user readable format
+   * @description Sanitize user data from payload format to a user readable format
    * @param {IUser} user - The user data from the payload.
-   * @returns {IUserBody} The sanitized user data.
+   * @returns {any} The sanitized user data.
    */
-  static sanitizeUser = (user: IUser) => {
+  static sanitizeUser = (user: IUser): any => {
     const sanitizedUser = {
       id: user._id,
       firstName: user.first_name,
