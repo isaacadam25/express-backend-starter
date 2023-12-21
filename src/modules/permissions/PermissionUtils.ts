@@ -1,3 +1,4 @@
+// import required types
 import { IPermission } from "@/models/permission/types";
 import {
   IPermissionBody,
@@ -5,7 +6,12 @@ import {
 } from "@/modules/permissions/types";
 
 class PermisssionUtils {
-  // format permission details for data base query
+  /**
+   * @description Format permission details for database query
+   *
+   * @param {IPermissionPayload} permission - The permission generic name
+   * @returns {IPermissionBody} A permission body to be saved to database
+   */
   static formatPermission = (
     permission: IPermissionPayload
   ): IPermissionBody => {
@@ -18,7 +24,12 @@ class PermisssionUtils {
     return formattedPermisssion;
   };
 
-  // sanitize permission details into user readable format
+  /**
+   * @description Sanitize permission details into user readable format
+   *
+   * @param {IPermission} permission - The permission generic name
+   * @returns {IPermissionPayload} A permission response to be sent to user
+   */
   static sanitizePermission = (permission: IPermission): IPermissionPayload => {
     const formattedPermisssion: IPermissionPayload = {
       id: permission._id,
