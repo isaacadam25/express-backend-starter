@@ -1,4 +1,7 @@
+// import required repositories
 import UserRepository from "@/modules/users/UserRepository";
+
+// import required types
 import { IUser } from "@/models/user/types";
 
 class AuthService extends UserRepository {
