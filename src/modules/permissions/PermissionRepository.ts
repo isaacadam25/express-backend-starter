@@ -3,38 +3,62 @@ import { IPermissionBody } from "@/modules/permissions/types";
 import { IPermission } from "@/models/permission/types";
 
 class PermissionRepository {
-  // create new permission
+  /**
+   * @description Create a new permission.
+   * @param {IPermissionBody} payload - The data for creating a new permission.
+   * @returns {Promise<IPermission | null>} A promise that resolves to the created permission or null.
+   */
   protected static create = (
     payload: IPermissionBody
   ): Promise<IPermission | null> => {
     return Permission.create(payload);
   };
 
-  // get all available permissions
+  /**
+   * @description Get all available permissions
+   * @returns {Promise<IPermission | null>} A promise that resolves to the retrieved permission or null.
+   */
   protected static getAll = (): Promise<IPermission[] | null> => {
     return Permission.find();
   };
 
-  // get all available permission with respect to query passed
+  /**
+   * @description Get all available permission with respect to query passed
+   * @param {object} query - The query condition
+   * @returns {Promise<IPermission | null>} A promise that resolves to the retrieved permissions or null.
+   */
   protected static getByQuery = (
     query: object
   ): Promise<IPermission[] | null> => {
     return Permission.find(query);
   };
 
-  // get single permission by ID
+  /**
+   * @description Get single permission by ID
+   * @param {string} id - The ID of the permission
+   * @returns {Promise<IPermission | null>} A promise that resolves to the retrieved permission or null.
+   */
   protected static getById = (id: string): Promise<IPermission | null> => {
     return Permission.findById(id);
   };
 
-  // get single permission by query passed
+  /**
+   * @description Get single permission by query passed
+   * @param {object} query - The query condition
+   * @returns {Promise<IPermission | null>} A promise that resolves to the retrieved permission or null.
+   */
   protected static getOneByQuery = (
     query: object
   ): Promise<IPermission | null> => {
     return Permission.findOne(query);
   };
 
-  // update single permission details by id
+  /**
+   * @description Update single permission details by id
+   * @param {string} id - The ID of the permission
+   * @param {IPermissionBody} payload - The data for updating a permission.
+   * @returns {Promise<IPermission | null>} A promise that resolves to the updated permission or null.
+   */
   protected static updateById = (
     id: string,
     payload: IPermissionBody
@@ -45,7 +69,11 @@ class PermissionRepository {
     });
   };
 
-  // delete single permission by id
+  /**
+   * @description Delete single permission by id
+   * @param {string} id - The ID of the permission
+   * @returns {Promise<IPermission | null>} A promise that resolves to the retrieved permission or null.
+   */
   protected static deleteById = (id: string): Promise<IPermission | null> => {
     return Permission.findByIdAndDelete(id);
   };
