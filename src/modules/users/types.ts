@@ -1,4 +1,8 @@
-// interface for user registration
+/**
+ *
+ * @description User registration details payload
+ *
+ */
 export interface IUserPayload {
   id?: string;
   firstName: string;
@@ -11,7 +15,11 @@ export interface IUserPayload {
   role: string;
 }
 
-// interface for user saving to database
+/**
+ *
+ * @description Formatted user registration details payload
+ *
+ */
 export interface IUserBody {
   first_name: string;
   last_name: string;
