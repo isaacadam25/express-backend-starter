@@ -12,22 +12,32 @@ import JWT from "@/utils/helpers/JWT";
 import Utils from "@/utils/helpers/Utils";
 import AuthUtils from "@/modules/authentication/AuthUtils";
 import UserUtils from "@/modules/users/UserUtils";
+import { AppError } from "@/utils/exceptions/AppError";
+
+// import required types
+import { HttpCode } from "@/utils/enums/HttpCodeEnums";
 import {
   IChangePassword,
   IUserLoginPayload,
 } from "@/modules/authentication/types";
-import { AppError } from "@/utils/exceptions/AppError";
-import { HttpCode } from "@/utils/enums/HttpCodeEnums";
 
 class AuthController extends Controller {
   /**
    * @description User login function
    *
-   * @method POST
    * @route /auth/login
-   * @access public
+   * @method POST
+   * @access Public
+   *
+   * @param {Request} req - The request object containing user credentials payload.
+   * @param {Response} res - The response object used to send the response.
+   * @returns {Response} A response indicating the status of the user login responses.
+   * @throws {AppError} If the credentials are invalid.
    */
-  static userLogin: RequestHandler = async (req: Request, res: Response) => {
+  static userLogin: RequestHandler = async (
+    req: Request,
+    res: Response
+  ): Promise<Response<any, Record<string, any>>> => {
     const payload: IUserLoginPayload = req.body;
 
     const phoneNumber = Utils.formatPhoneNumber(payload.phoneNumber);
@@ -60,27 +70,40 @@ class AuthController extends Controller {
   };
 
   /**
-   * @description Get current user logged in details
+   * @description Get details of the current logged in user.
    *
-   * @method GET
    * @route /auth
-   * @access private
+   * @method GET
+   * @access Private
+   *
+   * @param {Request} req - The http request object.
+   * @param {Response} res - The response object used to send the response to the user.
+   * @returns {Response} A response indicating the details of the current logged in user.
    */
-  static getAuthUser: RequestHandler = async (req: Request, res: Response) => {
+  static getAuthUser: RequestHandler = async (
+    req: Request,
+    res: Response
+  ): Promise<Response<any, Record<string, any>>> => {
     return res.json(this.successResponse("Auth user retrieved successfully"));
   };
 
   /**
-   * @description Change user password
+   * @description Change current user password
    *
-   * @method POST
    * @route /auth/change-password
-   * @access private
+   * @method POST
+   * @access Private
+   *
+   * @param {Request} req - The request object containing user passwords.
+   * @param {Response} res - The response object used to send the response.
+   * @returns {Response} A response indicating the status of the user changed password response.
+   * @throws {AppError} If the passwords are incorrect.
+   * @throws {AppError} If the user details are not found.
    */
   static changePassword: RequestHandler = async (
     req: Request,
     res: Response
-  ) => {
+  ): Promise<Response<any, Record<string, any>>> => {
     const payload: IChangePassword = req.body;
     const user = req.user;
 
