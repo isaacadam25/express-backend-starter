@@ -16,11 +16,21 @@ class PermisssionController extends Controller {
   /**
    * @description Create new permission
    *
-   * @method POST
    * @route /permissions
+   * @method POST
    * @access private
+   *
+   * @param {Request} req - The request object permission details payload.
+   * @param {Response} res - The response object used to send the response.
+   * @returns {Response} - A response indicating the created permission details.
+   * @throws {AppError} - If permission generic name is already exist
+   * @throws {AppError} - If permission display name is already exist
+   * @throws {AppError} - If failed to create permission
    */
-  static createPermisssion = async (req: Request, res: Response) => {
+  static createPermisssion = async (
+    req: Request,
+    res: Response
+  ): Promise<Response<any, Record<string, any>>> => {
     const payload: IPermissionPayload = req.body;
 
     const formattedPermisssion = PermisssionUtils.formatPermission(payload);
@@ -72,11 +82,19 @@ class PermisssionController extends Controller {
   /**
    * @description Get all permissions
    *
-   * @method GET
    * @route /permissions
+   * @method GET
    * @access private
+   *
+   * @param {Request} _req - The request object
+   * @param {Response} res - The response object used to send the response.
+   * @returns {Response} - A response indicating the retrieved permissions.
+   * @throws {AppError} - If no permission details found
    */
-  static getAllPermissions = async (req: Request, res: Response) => {
+  static getAllPermissions = async (
+    _req: Request,
+    res: Response
+  ): Promise<Response<any, Record<string, any>>> => {
     const permissions = await PermissionService.getAllPermissions();
     if (!permissions) {
       throw new AppError({
@@ -101,11 +119,19 @@ class PermisssionController extends Controller {
   /**
    * @description Get single permission
    *
-   * @method GET
    * @route /permissions/:id
+   * @method GET
    * @access private
+   *
+   * @param {Request} _req - The request object
+   * @param {Response} res - The response object used to send the response.
+   * @returns {Response} - A response indicating the retrieved permission.
+   * @throws {AppError} - If no permission details found
    */
-  static getSinglePermission = async (req: Request, res: Response) => {
+  static getSinglePermission = async (
+    req: Request,
+    res: Response
+  ): Promise<Response<any, Record<string, any>>> => {
     const permissionId: string = req.params.id;
 
     const existPermisssion = await PermissionService.getPermissionById(

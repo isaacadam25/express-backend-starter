@@ -20,7 +20,7 @@ class AnnouncementController extends Controller {
    *
    * @param {Request} req - The request object announcements details payload.
    * @param {Response} res - The response object used to send the response.
-   * @returns {Response} A response indicating the sent announcement details.
+   * @returns {Response} - A response indicating the sent announcement details.
    */
   static sendAnnouncement: RequestHandler = async (
     req: Request,
