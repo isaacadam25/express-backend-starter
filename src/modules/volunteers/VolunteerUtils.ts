@@ -1,3 +1,4 @@
+// import required types
 import { IVolunteer } from "@/models/volunteers/types";
 import {
   IVolunteerBody,
@@ -7,9 +8,10 @@ import {
 
 class VolunteerUtils {
   /**
-   *
    * @description Format volunteer details to database format
    *
+   * @param {IVolunteerPayload} payload - The volunteer data from the payload.
+   * @returns {IVolunteerBody} The formatted volunteer data for saving to database.
    */
   static formatVolunteerDetails = (
     payload: IVolunteerPayload
@@ -24,9 +26,10 @@ class VolunteerUtils {
   };
 
   /**
+   * @description Sanitize volunteer details to human readable format
    *
-   * @description Sanitize volunteer details to database format
-   *
+   * @param {IVolunteer} payload - The volunteer data from the payload.
+   * @returns {IVolunteerReponse} The sanitized volunteer data.
    */
   static sanitizeVoluteerDetails = (payload: IVolunteer): IVolunteerReponse => {
     return {
