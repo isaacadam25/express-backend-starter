@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 
-const saltRounds = 10;
+const saltRounds = 10; //TODO: Make this private or save to .env
 
 class Encryption {
   /**
