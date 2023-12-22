@@ -72,12 +72,25 @@ class AuthMiddleware {
       if (isEmpty(existUser)) {
         throw new AppError({
           httpCode: HttpCode.UNAUTHORIZED,
-          description:
-            "You are not authorized. Please contact your admin 1" + userId,
+          description: "You are not authorized. Please contact your admin",
         });
       }
 
       const { role } = existUser;
+
+      if (isEmpty(role)) {
+        throw new AppError({
+          httpCode: HttpCode.UNAUTHORIZED,
+          description: "You are not authorized. Please contact your admin",
+        });
+      }
+
+      if (isEmpty(role.permissions)) {
+        throw new AppError({
+          httpCode: HttpCode.UNAUTHORIZED,
+          description: "You are not authorized. Please contact your admin",
+        });
+      }
 
       const isAllowed = role.permissions.find(
         (permission) => permission.generic_name === permissionName
@@ -88,7 +101,7 @@ class AuthMiddleware {
       } else {
         throw new AppError({
           httpCode: HttpCode.UNAUTHORIZED,
-          description: "You are not authorized. Please contact your admin 2",
+          description: "You are not authorized. Please contact your admin",
         });
       }
     };
