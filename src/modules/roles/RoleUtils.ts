@@ -25,7 +25,7 @@ class RoleUtils {
    * @description Sanitize role to human readable format
    *
    * @param {IRolePayload} payload - The role data from the payload.
-   * @returns {IRoleBody} The formatted role data for saving to human readable format.
+   * @returns {any} The formatted role data for saving to human readable format.
    */
   static sanitizeRole = (payload: IRole): any => {
     return {
