@@ -1,17 +1,20 @@
+// import required repository
 import RoleRepository from "@/modules/roles/RoleRepository";
+
+// import required helper utils
 import Utils from "@/utils/helpers/Utils";
+
+// import required types
 import { IRole } from "@/models/role/types";
 import { IRoleBody, IRoleUpdate } from "@/modules/roles/types";
 
 class RoleService extends RoleRepository {
-  // get role by name
-  static getRoleByName = (roleName: string): Promise<IRole | null> => {
-    return this.getOneByQuery({
-      role_name: { $regex: Utils.caseInsensitiveRegex(roleName) },
-    });
-  };
-
-  // create new role
+  /**
+   * @description Create new role
+   *
+   * @param {IRoleBody} payload - The role details
+   * @returns {Promise<IRole | null>} A promise that resolves to the created role or null.
+   */
   static createRole = async (payload: IRoleBody): Promise<IRole | null> => {
     const newRole = await this.create(payload);
 
@@ -20,12 +23,35 @@ class RoleService extends RoleRepository {
     return createdRole;
   };
 
-  // get role by its corresponding id
+  /**
+   * @description Get role by name
+   *
+   * @param {string} roleName - The role name
+   * @returns {Promise<IRole | null>} A promise that resolves to the retrieved role or null.
+   */
+  static getRoleByName = (roleName: string): Promise<IRole | null> => {
+    return this.getOneByQuery({
+      role_name: { $regex: Utils.caseInsensitiveRegex(roleName) },
+    });
+  };
+
+  /**
+   * @description Get single role by ID
+   *
+   * @param {string} roleId - The role ID
+   * @returns {Promise<IRole | null>} A promise that resolves to the retrieved role or null.
+   */
   static getRoleById = (roleId: string): Promise<IRole | null> => {
     return this.getById(roleId);
   };
 
-  // add permissions to a role
+  /**
+   * @description Add permissions to a role
+   *
+   * @param {string} roleId - The role ID
+   * @param {string} permissionId - The permission ID
+   * @returns {Promise<IRole | null>} A promise that resolves to the updated role or null.
+   */
   static addPermissionToRole = (
     roleId: string,
     permissionId: string
@@ -35,7 +61,13 @@ class RoleService extends RoleRepository {
     });
   };
 
-  // remove permissions to a role
+  /**
+   * @description Remove permissions from a role
+   *
+   * @param {string} roleId - The role ID
+   * @param {string} permissionId - The permission ID
+   * @returns {Promise<IRole | null>} A promise that resolves to the updated role or null.
+   */
   static removePermissionFromRole = (
     roleId: string,
     permissionId: string
@@ -45,22 +77,37 @@ class RoleService extends RoleRepository {
     });
   };
 
-  // retrieve all roles
+  /**
+   * @description Retrieve all roles
+   *
+   * @returns {Promise<IRole | null>} A promise that resolves to the retrieved roles or null.
+   */
   static getAllRoles = (): Promise<IRole[] | null> => {
     return this.getAll();
   };
 
-  // delete role
+  /**
+   * @description Delete single role by ID
+   *
+   * @param {string} roleId - The role ID
+   * @returns {Promise<IRole | null>} A promise that resolves to the deleted role or null.
+   */
   static deleteRole = (roleId: string): Promise<IRole | null> => {
     return this.deleteById(roleId);
   };
 
-  // update role details
+  /**
+   * @description Update role details by ID
+   *
+   * @param {string} roleId - The role ID
+   * @param {IRoleUpdate} payload - The role payload update
+   * @returns {Promise<IRole | null>} A promise that resolves to the retrieved role or null.
+   */
   static updateRole = (
-    id: string,
+    roleId: string,
     payload: IRoleUpdate
   ): Promise<IRole | null> => {
-    return this.updateById(id, {
+    return this.updateById(roleId, {
       role_name: payload.roleName,
       description: payload.description,
     });
