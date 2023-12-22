@@ -71,12 +71,6 @@ class VolunteerRepository {
   };
 
   /**
-   *
-   * @description Update single volunteer details from database
-   *
-   */
-
-  /**
    * @description Update single volunteer details from database.
    * @param {string} volunteerId - The volunteer id.
    * @param {object} payload - The updated volunteer details
