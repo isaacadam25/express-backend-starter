@@ -1,7 +1,14 @@
+// import required types
 import { IUser } from "@/models/user/types";
 
 class AuthUtils {
-  // sanitize response into human readable format
+  /**
+   * @description Sanitize response to human readable format
+   *
+   * @param {IUser} user - The user data from the payload.
+   * @param {string} token - The user token.
+   * @returns {any} The formatted response data to human readable format.
+   */
   static sanitizeResponse = (user: IUser, token: string): object => {
     const userResponse = {
       id: user._id,
@@ -22,6 +29,7 @@ class AuthUtils {
       }),
       token,
     };
+
     return userResponse;
   };
 }
