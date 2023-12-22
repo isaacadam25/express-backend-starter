@@ -1,12 +1,14 @@
 import Volunteer from "@/models/volunteers/Volunteer";
+
+// import required types
 import { IVolunteer } from "@/models/volunteers/types";
 import { IVolunteerBody } from "@/modules/volunteers/types";
 
 class VolunteerRepository {
   /**
-   *
-   * @description Create new volunteer in database
-   *
+   * @description Create a new volunteer.
+   * @param {IVolunteerBody} payload - The data for creating a new volunteer.
+   * @returns {Promise<IVolunteer | null>} A promise that resolves to the created volunteer or null.
    */
   protected static create = (
     payload: IVolunteerBody
@@ -15,9 +17,9 @@ class VolunteerRepository {
   };
 
   /**
-   *
-   * @description Get single volunteer details from database
-   *
+   * @description Get single volunteer details.
+   * @param {string} volunteerId - The volunteer id.
+   * @returns {Promise<IVolunteer | null>} A promise that resolves the retrieved volunteer or null.
    */
   protected static getById = (
     volunteerId: string
@@ -26,9 +28,9 @@ class VolunteerRepository {
   };
 
   /**
-   *
    * @description Get single volunteer details from database by specific condition
-   *
+   * @param {object} query - The data for creating a new volunteer.
+   * @returns {Promise<IVolunteer | null>} A promise that resolves the retrieved volunteer or null.
    */
   protected static getOneByQuery = (
     query: object
@@ -37,9 +39,10 @@ class VolunteerRepository {
   };
 
   /**
-   *
    * @description Get all volunteers from database
-   *
+   * @param {number} skip - The page accessed.
+   * @param {number} limit - The limit of data from database.
+   * @returns {Promise<IVolunteer | null>} A promise that resolves the retrieved volunteers or null.
    */
   protected static getAll = (
     skip: number,
@@ -51,9 +54,11 @@ class VolunteerRepository {
   };
 
   /**
-   *
    * @description Get all volunteer from database by specific condition
-   *
+   * @param {object} query - The data for creating a new volunteer.
+   * @param {number} skip - The page accessed.
+   * @param {number} limit - The limit of data from database.
+   * @returns {Promise<IVolunteer | null>} A promise that resolves the retrieved volunteers or null.
    */
   protected static getByQuery = (
     query: object,
@@ -70,6 +75,13 @@ class VolunteerRepository {
    * @description Update single volunteer details from database
    *
    */
+
+  /**
+   * @description Update single volunteer details from database.
+   * @param {string} volunteerId - The volunteer id.
+   * @param {object} payload - The updated volunteer details
+   * @returns {Promise<IVolunteer | null>} A promise that resolves the updated volunteer or null.
+   */
   protected static updateById = (
     volunteerId: string,
     payload: object
@@ -81,9 +93,9 @@ class VolunteerRepository {
   };
 
   /**
-   *
    * @description Delete single volunteer details from database
-   *
+   * @param {string} volunteerId - The volunteer id.
+   * @returns {Promise<IVolunteer | null>} A promise that resolves the deleted volunteer or null.
    */
   protected static deleteById = (
     volunteerId: string
