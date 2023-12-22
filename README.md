@@ -43,4 +43,4 @@ Before you begin, ensure you have Node.js and npm (Node Package Manager) install
 
 ### Contributing
 
-Feel free to contribute to this project or suggesting improvements by creating your feature branch. We'll merge it after discussion with technical lead.
+Feel free to contribute to this project or suggesting improvements by creating your feature branch.
