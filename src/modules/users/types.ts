@@ -1,5 +1,16 @@
 /**
  *
+ * @description Sanitized permission
+ *
+ */
+export interface ISanitizedPermission {
+  id: string;
+  genericName: string;
+  displayName: string;
+}
+
+/**
+ *
  * @description User registration details payload
  *
  */
@@ -28,4 +39,22 @@ export interface IUserBody {
   email?: string;
   password: string;
   role: string;
+}
+
+/**
+ *
+ * @description Sanitized user response
+ *
+ */
+
+export interface ISanitizedUserResponse {
+  id: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  phoneNumber: string;
+  email: string | null;
+  last_login: string | null;
+  role: string;
+  permissions: ISanitizedPermission[];
 }

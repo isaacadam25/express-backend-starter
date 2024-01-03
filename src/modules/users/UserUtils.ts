@@ -1,6 +1,10 @@
 import { map } from "lodash";
 import { IUser } from "@/models/user/types";
-import { IUserBody, IUserPayload } from "@/modules/users/types";
+import {
+  ISanitizedUserResponse,
+  IUserBody,
+  IUserPayload,
+} from "@/modules/users/types";
 
 class UserUtils {
   /**
@@ -28,7 +32,7 @@ class UserUtils {
    * @returns {any} The sanitized user data.
    */
   static sanitizeUser = (user: IUser): any => {
-    const sanitizedUser = {
+    const sanitizedUser: ISanitizedUserResponse = {
       id: user._id,
       firstName: user.first_name,
       lastName: user.last_name,
