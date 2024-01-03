@@ -5,6 +5,7 @@ interface IConstants {
   TEST_DATABASE_URI: string;
   PRODUCTION_DATABASE_URI: string;
   ENV: string;
+  JWT_SECRET: string;
 }
 
 export const constants: IConstants = {
@@ -18,5 +19,8 @@ export const constants: IConstants = {
   PRODUCTION_DATABASE_URI: env.PRODUCTION_DATABASE_URI,
 
   // current environment value
-  ENV: env.ENV,
+  ENV: env.ENV || "development",
+
+  // Secret value of the JWT
+  JWT_SECRET: env.JWT_SECRET,
 };

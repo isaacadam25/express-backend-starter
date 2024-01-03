@@ -18,8 +18,6 @@ import UserRoutes from "@/modules/users/UserRoutes";
 import RoleRoutes from "@/modules/roles/RoleRoutes";
 import PermissionRoutes from "@/modules/permissions/PermissionRoutes";
 import AuthRoutes from "@/modules/authentication/AuthRoutes";
-import VolunteerRoutes from "@/modules/volunteers/VolunteerRoutes";
-import AnnouncementRoutes from "@/modules/announcements/AnnouncementRoutes";
 
 dotenv.config();
 
@@ -78,8 +76,6 @@ class App {
     this.app.use("/api/v1/users", UserRoutes);
     this.app.use("/api/v1/roles", RoleRoutes);
     this.app.use("/api/v1/permissions", PermissionRoutes);
-    this.app.use("/api/v1/volunteers", VolunteerRoutes);
-    this.app.use("/api/v1/announcements", AnnouncementRoutes);
     this.app.all("*", (req: Request, res: Response) => {
       return res.status(404).json({
         success: false,
